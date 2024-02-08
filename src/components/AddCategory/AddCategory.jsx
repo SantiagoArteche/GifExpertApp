@@ -29,12 +29,7 @@ export const AddCategory = () => {
       const uniqueCategory = categories.find(
         (category) => category.toUpperCase() === data.category.toUpperCase()
       );
-      !uniqueCategory &&
-        onNewCategory(
-          `${data.category[0].toUpperCase()}${data.category
-            .slice(1, data.category.length)
-            .toLowerCase()}`
-        );
+      !uniqueCategory && onNewCategory(`${data.category}`);
       resetForm();
     },
     validateOnChange: false,

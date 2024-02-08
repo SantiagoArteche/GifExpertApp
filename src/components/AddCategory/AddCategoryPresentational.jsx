@@ -1,3 +1,4 @@
+import { useFetchGifs } from "../../hooks/useFetchGifs";
 import { Gif } from "../Gif/Gif";
 import { Box, Input } from "@mui/material";
 
@@ -8,6 +9,7 @@ export const AddCategoryPresentational = ({
   categories,
   clearCategories,
 }) => {
+  const requestGif = useFetchGifs(categories);
   return (
     <>
       <Box
@@ -20,7 +22,29 @@ export const AddCategoryPresentational = ({
           name="category"
           value={values.category}
           placeholder="Busque sus gifs..."
-          sx={{ width: 500, fontSize: 22 }}
+          sx={{
+            width: 500,
+            fontSize: 22,
+            border: "2px solid black",
+            padding: 2,
+            height: 66,
+
+            "::after": {
+              borderBottom: "none",
+            },
+            "::before": {
+              borderBottom: "none",
+            },
+            ":before": {
+              borderBottom: "none",
+            },
+            ":hover": {
+              borderBottom: "none",
+              height: 66,
+              padding: 2,
+              margin: 0,
+            },
+          }}
         />
         <Box
           component={"button"}
@@ -30,7 +54,7 @@ export const AddCategoryPresentational = ({
             color: "white",
             padding: 2,
             fontSize: 22,
-            ":hover": { backgroundColor: "blue" },
+            ":hover": { backgroundColor: "gray" },
             cursor: "pointer",
           }}
           type="submit"
@@ -38,7 +62,7 @@ export const AddCategoryPresentational = ({
           Agregar
         </Box>
       </Box>
-      {categories.length !== 0 && (
+      {categories.length !== 0 && requestGif.length !== 0 && (
         <Box
           sx={{
             display: "flex",
@@ -58,10 +82,11 @@ export const AddCategoryPresentational = ({
               justifySelf: "end",
               cursor: "pointer",
               fontSize: 20,
+              ":hover": { backgroundColor: "gray" },
             }}
             onClick={clearCategories}
           >
-            Limpiar busquedas
+            Limpiar Busquedas
           </Box>
         </Box>
       )}
