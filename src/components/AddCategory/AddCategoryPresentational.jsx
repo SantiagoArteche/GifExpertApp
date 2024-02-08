@@ -26,23 +26,11 @@ export const AddCategoryPresentational = ({
             width: 500,
             fontSize: 22,
             border: "2px solid black",
+            borderBottom: "none",
             padding: 2,
-            height: 66,
-
-            "::after": {
-              borderBottom: "none",
-            },
-            "::before": {
-              borderBottom: "none",
-            },
+            "::after": { borderBottom: "none" },
             ":before": {
-              borderBottom: "none",
-            },
-            ":hover": {
-              borderBottom: "none",
-              height: 66,
-              padding: 2,
-              margin: 0,
+              borderBottom: "2px solid black",
             },
           }}
         />
