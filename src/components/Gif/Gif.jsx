@@ -3,12 +3,11 @@ import { useFetchGifs } from "../../hooks/useFetchGifs.js";
 
 import { GifItem } from "../GifItem/GifItem.jsx";
 
-export const Gif = ({ category, categories }) => {
+export const Gif = ({ category }) => {
   let requestGif = useFetchGifs(category);
 
   return (
     <>
-    
       {requestGif.length !== 0 && (
         <Box
           sx={{

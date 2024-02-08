@@ -11,7 +11,6 @@ export const AddCategoryPresentational = ({
   clearCategories,
 }) => {
   const requestGif = useFetchGifs(categories);
-  const [loading, setLoading] = useState(false);
 
   return (
     <>
@@ -77,13 +76,12 @@ export const AddCategoryPresentational = ({
               ":hover": { backgroundColor: "gray" },
             }}
             onClick={clearCategories}
-            onLoad={() => setLoading(true)}
           >
             Limpiar Busquedas
           </Box>
         </Box>
       )}
-      {categories.length !== 0 && requestGif.length === 0 && (
+      {categories.length !== 0 && requestGif.length == 0 && (
         <Box
           sx={{
             textAlign: "center",
@@ -96,14 +94,11 @@ export const AddCategoryPresentational = ({
           Cargando...
         </Box>
       )}
-      {categories.map((category) => (
-        <Gif
-          key={category}
-          categories={categories}
-          category={category}
-          loading={loading}
-        />
-      ))}
+
+      {requestGif.length !== 0 &&
+        categories.map((category) => (
+          <Gif key={category} categories={categories} category={category} />
+        ))}
     </>
   );
 };
