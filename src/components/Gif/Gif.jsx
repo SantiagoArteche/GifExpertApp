@@ -1,20 +1,21 @@
 import { Box } from "@mui/material";
-
 import { useFetchGifs } from "../../hooks/useFetchGifs.js";
-import { RequestGif } from "../RequestGif/RequestGif.jsx";
 
-export const Gif = ({ category }) => {
+import { GifItem } from "../GifItem/GifItem.jsx";
+
+export const Gif = ({ category, categories }) => {
   let requestGif = useFetchGifs(category);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      {requestGif.length !== 0 ? (
-        <>
+    <>
+    
+      {requestGif.length !== 0 && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <Box
             component={"h2"}
             sx={{
@@ -38,24 +39,12 @@ export const Gif = ({ category }) => {
             {requestGif.map(
               ({ id, images, title }) =>
                 title.trim() != "" && (
-                  <RequestGif key={id} images={images} title={title} />
+                  <GifItem key={id} images={images} title={title} />
                 )
             )}
           </Box>
-        </>
-      ) : (
-        <Box
-          sx={{
-            textAlign: "center",
-            marginBottom: 5,
-            fontSize: "2.7rem",
-            textTransform: "capitalize",
-          }}
-          component={"h2"}
-        >
-          Cargando...
         </Box>
       )}
-    </Box>
+    </>
   );
 };

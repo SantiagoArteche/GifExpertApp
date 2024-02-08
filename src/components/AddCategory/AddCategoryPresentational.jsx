@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useFetchGifs } from "../../hooks/useFetchGifs";
 import { Gif } from "../Gif/Gif";
 import { Box, Input } from "@mui/material";
@@ -10,6 +11,8 @@ export const AddCategoryPresentational = ({
   clearCategories,
 }) => {
   const requestGif = useFetchGifs(categories);
+  const [loading, setLoading] = useState(false);
+
   return (
     <>
       <Box
@@ -33,6 +36,7 @@ export const AddCategoryPresentational = ({
               borderBottom: "2px solid black",
             },
           }}
+          ON
         />
         <Box
           component={"button"}
@@ -73,14 +77,32 @@ export const AddCategoryPresentational = ({
               ":hover": { backgroundColor: "gray" },
             }}
             onClick={clearCategories}
+            onLoad={() => setLoading(true)}
           >
             Limpiar Busquedas
           </Box>
         </Box>
       )}
-
+      {categories.length !== 0 && requestGif.length === 0 && (
+        <Box
+          sx={{
+            textAlign: "center",
+            marginBottom: 5,
+            fontSize: "2.7rem",
+            textTransform: "capitalize",
+          }}
+          component={"h2"}
+        >
+          Cargando...
+        </Box>
+      )}
       {categories.map((category) => (
-        <Gif key={category} category={category} />
+        <Gif
+          key={category}
+          categories={categories}
+          category={category}
+          loading={loading}
+        />
       ))}
     </>
   );
