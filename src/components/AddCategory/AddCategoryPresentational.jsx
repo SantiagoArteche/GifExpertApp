@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useFetchGifs } from "../../hooks/useFetchGifs";
 import { Gif } from "../Gif/Gif";
 import { Box, Input } from "@mui/material";
@@ -35,7 +34,6 @@ export const AddCategoryPresentational = ({
               borderBottom: "2px solid black",
             },
           }}
-          ON
         />
         <Box
           component={"button"}

@@ -9,12 +9,16 @@ export const AddCategory = () => {
 
   const onNewCategory = (newCategory) => {
     if (newCategory === "") return;
-
-    setCategories([newCategory, ...categories]);
-    localStorage.setItem(
-      "categories",
-      JSON.stringify([newCategory, ...categories])
-    );
+    if (categories.length === 4) {
+      setCategories([newCategory]);
+      localStorage.setItem("categories", JSON.stringify([newCategory]));
+    } else {
+      setCategories([newCategory, ...categories]);
+      localStorage.setItem(
+        "categories",
+        JSON.stringify([newCategory, ...categories])
+      );
+    }
   };
 
   const clearCategories = () => {
