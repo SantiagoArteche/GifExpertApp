@@ -50,7 +50,7 @@ export const AddCategoryPresentational = ({
           }}
           type="submit"
         >
-          Agregar
+          Buscar
         </Box>
       </Box>
       {categories.length !== 0 && requestGif.length !== 0 && (
