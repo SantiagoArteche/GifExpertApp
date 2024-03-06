@@ -6,7 +6,7 @@ export const useFetchGifs = (category) => {
 
   useEffect(() => {
     fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${category}&limit=10`
+      `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${category}&limit=5`
     )
       .then((res) => res.json())
       .then(({ data }) => setFetchData(data));
